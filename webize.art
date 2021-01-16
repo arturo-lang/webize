@@ -18,12 +18,33 @@ Webize: #[
 ; The main library
 ;--------------------------
 
+printHelp: function [][
+    print ---
+Usage:
+  webize [command] <options>
+
+Commands:
+  new <name>                Creates new project
+  build                     Builds current project 
+  
+  help                      Show this help screen
+  version                   Show current version
+---
+]
+
 ;--------------------------
 ; The main entry point
 ;--------------------------
 
 if standalone? [
+    if empty? arg [ printHelp, exit ]
 
+    case [equal? first arg]
+        when? ["new"][ print "running NEW"]
+        when? ["build"][ print "build"]
+        else  [ print "whatever" ]
+    
+    print ["args:" arg]
 ]
 
 ;==========================================
