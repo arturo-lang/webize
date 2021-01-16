@@ -1,4 +1,4 @@
-<p align="center"><img align="center" width="350" src="https://raw.githubusercontent.com/arturo-lang/grafito/master/logo.png"/></p>
+<p align="center"><img align="center" width="350" src="https://raw.githubusercontent.com/arturo-lang/webize/master/logo.png"/></p>
 <p align="center">
   <b>Easy-to-use & minimalist<br>Static Website Generator</b>
   <br><br>
