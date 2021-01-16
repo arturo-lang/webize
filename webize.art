@@ -1,3 +1,32 @@
 #!/usr/bin/env arturo
+;==========================================
+; Webize
+;
+; Easy-to-use & minimalist 
+; static website generator
+; in Arturo
+;
+; @file: webize.art
+; @author: drkameleon
+;==========================================
 
-print "In webize"
+Webize: #[
+    version: "0.1"
+] 
+
+;--------------------------
+; The main library
+;--------------------------
+
+;--------------------------
+; The main entry point
+;--------------------------
+
+if standalone? [
+
+]
+
+;==========================================
+; This is the end,
+; my only friend, the end...
+;==========================================
