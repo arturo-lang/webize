@@ -18,6 +18,10 @@ Webize: #[
 ; The main library
 ;--------------------------
 
+newProject: function [location][
+	write.directory location ø
+]
+
 printHelp: function [][
     print ---
 Usage:
