@@ -15,11 +15,46 @@ Webize: #[
 ] 
 
 ;--------------------------
+; Globals
+;--------------------------
+
+Paths: #[
+	build:  			"|target|/build"
+	pages:				"|target|/pages"
+	resourceFonts:  	"|target|/resources/fonts"
+	resourceImages: 	"|target|/resources/images"
+	resourceScripts:	"|target|/resources/scripts"
+	resourceStyles: 	"|target|/resources/styles"
+	theme:  			"|target|/theme"
+]
+
+;--------------------------
+; Helpers
+;--------------------------
+
+printInfo: function [msg inf][
+	if? not? null? attribute "section" ->
+		print [color.green ("* " ++ msg) inf]
+	else ->
+		print [color.cyan ("   - " ++ msg) inf]
+]
+
+;--------------------------
 ; The main library
 ;--------------------------
 
-newProject: function [location][
-	write.directory location ø
+newProject: function [target][
+	printInfo.section "creating new project:" target
+	write.directory target ø
+	loop Paths [k,pa][
+		subpath: ~pa
+		printInfo "creating:" subpath
+		write.directory ~pa ø
+	]
+	inspect #[
+		webize: [Webize\version]
+	]
+	write ~"|target|/config.art" ""
 ]
 
 printHelp: function [][
@@ -44,7 +79,7 @@ if standalone? [
     if empty? arg [ printHelp, exit ]
 
     case [equal? first arg]
-        when? ["new"][ print "running NEW"]
+        when? ["new"][ newProject arg\1 ]
         when? ["build"][ print "build"]
         else  [ print "whatever" ]
     
