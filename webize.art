@@ -28,6 +28,8 @@ Paths: #[
 	theme:  			"|target|/theme"
 ]
 
+Settings: #[]
+
 ;--------------------------
 ; Helpers
 ;--------------------------
@@ -49,16 +51,22 @@ printInfo: function [msg inf][
 
 newProject: function [target][
 	printInfo.section "creating new project:" target
-	write.directory target ø
+	write.directory to :string target ø
 	loop Paths [k,pa][
 		subpath: ~pa
 		printInfo "creating:" subpath
 		write.directory ~pa ø
 	]
-	inspect #[
-		webize: [Webize\version]
-	]
 	write ~"|target|/config.art" ""
+]
+
+buildProject: function [][
+	if? exists? "config.art" [
+		print "building"
+	]
+	else [
+		print "cannot build: not valid project"
+	]
 ]
 
 printHelp: function [][
@@ -75,19 +83,48 @@ Commands:
 ---
 ]
 
+initialize: function [][
+	loop ['sass 'coffee 'minify 'cwebp] [tool][
+		set Settings tool (toolExists? tool)
+	]
+	loop Settings [k,v][
+		prints [pad.right k ++ ":" 10]
+		
+		if? boolean? v [
+			if? v -> print "YES"
+			else -> print "NO"
+		]
+		else -> print v
+	]
+]
+
 ;--------------------------
 ; The main entry point
 ;--------------------------
 
 if standalone? [
+	initialize
+
     if empty? arg [ printHelp, exit ]
 
-    case [equal? first arg]
-        when? ["new"][ newProject arg\1 ]
-        when? ["build"][ print "build"]
-        else  [ print "whatever" ]
-    
-    print ["args:" arg]
+	command: join.with:" " arg
+	replace 'command "new" "newProject"
+	replace 'command "build" "buildProject"
+
+	inspect command
+
+	command: map to :block command [item][
+		if? not? set? to :literal item [
+			to :literal item
+		]
+		else [
+			item
+		]
+	]
+
+	inspect command
+
+	do command
 ]
 
 ;==========================================
