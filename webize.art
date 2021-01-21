@@ -32,6 +32,10 @@ Paths: #[
 ; Helpers
 ;--------------------------
 
+toolExists?: function [cmd][ 
+	not? empty? strip execute ~{!sh command -v |cmd|} 
+]
+
 printInfo: function [msg inf][
 	if? not? null? attribute "section" ->
 		print [color.green ("* " ++ msg) inf]
