@@ -111,20 +111,7 @@ if standalone? [
 	replace 'command "new" "newProject"
 	replace 'command "build" "buildProject"
 
-	inspect command
-
-	command: map to :block command [item][
-		if? not? set? to :literal item [
-			to :literal item
-		]
-		else [
-			item
-		]
-	]
-
-	inspect command
-
-	do command
+	do as.agnostic to :block command
 ]
 
 ;==========================================
