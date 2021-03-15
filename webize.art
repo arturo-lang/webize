@@ -33,6 +33,7 @@ Config: #[]
 Target: "build"
 Theme: "theme"
 ThemeSettings: # "theme/settings.art"
+InfoPadding: 13
 
 ;--------------------------
 ; Private Helpers
@@ -40,25 +41,31 @@ ThemeSettings: # "theme/settings.art"
 
 {_showLogo}: function [][
     print join @ to :block {
-        color.green"      _  _" color.white.bold" __        __   _     _         "  "\n"
-        color.green"    _| || |_" color.white.bold" \      / /__| |__ (_)_______ "  "\n"
-        color.green"   |_  **  _|" color.white.bold" \ /\ / / _ \ '_ \| |_  / _ \"  "\n"
-        color.green"   |_  **  _|" color.white.bold"\ V  V /  __/ |_) | |/ /  __/"  "\n"
-        color.green"     |_||_|" color.white.bold"   \_/\_/ \___|_.__/|_/___\___|"  "\n"
+        color.green"        _  _" color.white.bold" __        __   _     _         "  "\n"
+        color.green"      _| || |_" color.white.bold" \      / /__| |__ (_)_______ "  "\n"
+        color.green"     |_  -|  _|" color.white.bold" \ /\ / / _ \ '_ \| |_  / _ \"  "\n"
+        color.green"     |_  |-  _|" color.white.bold"\ V  V /  __/ |_/ | |/ /  __/"  "\n"
+        color.green"       |_||_|" color.white.bold"   \_/\_/ \___|_.__/|_/___\___|"
     }
 ]
 
 {_showHeader}: function [message][
-    print color.cyan "==========================================================================="
-    print color.cyan pad upper message 11
-    print color.cyan "==========================================================================="
+    print ""
+    print color.magenta "==========================================================================="
+    print [pad "" InfoPadding color.magenta upper message]
+    print color.magenta "==========================================================================="
 ]
 
-{_showInfo}: function [msg inf][
+{_showInfo}: function [msg,inf][
     if? attr "section" ->
         print [color.green ("* " ++ msg) inf]
     else ->
         print [color.cyan ("   - " ++ msg) inf]
+]
+
+{_showInfoLine}: function [head,tail,success][
+    if? success -> print [color.green pad head InfoPadding tail]
+    else -> print [color.cyan pad head InfoPadding tail]
 ]
 
 {_showHelp}: function [][
@@ -123,9 +130,13 @@ linkTo: function [location][
     if? exists? "config.art" [
         Config: #"config.art" 
 
+        ;-------------------------
+        ; Render pages
+        ;-------------------------
+        call {_showHeader} ["rendering"]
+
         pages: select list.recursive "pages" => [ suffix? & ".art"]
         count: size pages
-        call {_showHeader} ["rendering"]
         loop.with: 'c pages 'page [
             sourcePath: page --"pages/"
             targetRoute: sourcePath -- extract.extension page
@@ -134,7 +145,7 @@ linkTo: function [location][
             targetFile: extract.filename targetPath
             write.directory targetDir ø
 
-            print [color.green pad ~"[|c+1|/|count|]" 11 join.with:" ▪︎ " split.path (sourcePath -- extract.extension sourcePath)]
+            call {_showInfoLine} @[~"[|c+1|/|count|]" join.with:" ▪︎ " split.path (sourcePath -- extract.extension sourcePath) false]
 
             keepSearching: true
             templatePath: ""
@@ -148,32 +159,8 @@ linkTo: function [location][
             ]
 
             do [
-                ; MAIN: new read.markdown got\content
-
-                ; if key? ThemeSettings 'postprocess [
-                ; 	loop ThemeSettings\postprocess [k,v] -> replace 'MAIN k v
-                ; ]
                 pagePath: split.path targetRoute
                 W: #.data page
-
-                ; print pagePath
-                rsrcPath: join.path (repeat [".."] (size pagePath)-1) ++ "resources"
-                ; print ["link to documentation/library/arithmetic/somethingelse/doit.html:" "\n\t" linkTo "documentation/library/arithmetic/somethingelse/doit.html"]
-                ; print ["link to documentation/somethingelse/doit.html:" "\n\t" linkTo "documentation/somethingelse/doit.html"]
-                ; print ["link to somethingelse/doit.html:" "\n\t" linkTo "somethingelse/doit.html"]
-                ; print ["rsrcPath:" rsrcPath]
-
-                ; print ["\n"
-                ; 	"route:" split.path targetRoute "\n"
-                ; 	"path:" targetPath "\n"
-                ; 	"in:" targetDir "\n"
-                ; 	"writing file:" targetFile "\n"
-                ; 	"from:" page "\n"
-                ; 	"source:" sourcePath "\n"
-                ; 	"template:" templatePath "\n"
-                ; ]
-
-                ;inspect W
                 rendered: new render.template read templatePath
                 if key? ThemeSettings 'postprocess [
                     loop ThemeSettings\postprocess [k,v] [
@@ -181,30 +168,36 @@ linkTo: function [location][
                     ]
                 ]
                 write targetPath rendered
-                
             ]
             
         ]
-        call {_showHeader} ["post-processing"]
-        print execute "pwd"
+        call {_showInfoLine} @["Done." "" true]
+
+        ;-------------------------
+        ; Post-processing
+        ;-------------------------
+        call {_showHeader} ["finalizing"]
+
         loop filter list "theme/resources" => [in? "."] 'res [ 
+            call {_showInfoLine} @["create" join.path @[Target "resources" extract.basename res] false]
             write.directory join.path @[Target "resources" extract.basename res] ø
-            print ["creating folder:" join.path @[Target "resources" extract.basename res]]
             loop list res 'item [
                 tgt: join.path @[Target item -- "theme/"]
-                print ["copying:" item "to:" extract.directory tgt]
+                
                 case [in? extract.extension item]
                     when? [[".scss" ".sass"]] [
+                        call {_showInfoLine} @["process" tgt false]
                         newTgt: replace tgt extract.extension tgt ".css"
-                        print ~"scss |item| |newTgt|"
                         execute ~"scss |item| |newTgt|"
                     ]
                     else [
-                        print ~"cp |item| |extract.directory tgt|"
+                        call {_showInfoLine} @["copy" tgt false]
                         execute ~"cp |item| |extract.directory tgt|"
                     ]
             ]
         ]
+        call {_showInfoLine} @["Done." "" true]
+        print ""
     ]
     else [
         print "cannot build: not valid project"
