@@ -1,4 +1,4 @@
-#!/usr/bin/env arturo
+#!/usr/bin/env arturo -d
 ;==========================================
 ; Webize
 ;
@@ -19,83 +19,202 @@ Webize: #[
 ;--------------------------
 
 Paths: #[
-	build:  			"|target|/build"
-	pages:				"|target|/pages"
-	resourceFonts:  	"|target|/resources/fonts"
-	resourceImages: 	"|target|/resources/images"
-	resourceScripts:	"|target|/resources/scripts"
-	resourceStyles: 	"|target|/resources/styles"
-	theme:  			"|target|/theme"
+    root:				path\current
+    build:  			"|project|/build"
+    pages:				"|project|/pages"
+    resourceFonts:  	"|project|/theme/resources/fonts"
+    resourceImages: 	"|project|/theme/resources/images"
+    resourceScripts:	"|project|/theme/resources/scripts"
+    resourceStyles: 	"|project|/theme/resources/styles"
 ]
 
 Settings: #[]
+Config: #[]
+Target: "build"
+Theme: "theme"
+ThemeSettings: # "theme/settings.art"
+
+;--------------------------
+; Private Helpers
+;--------------------------
+
+{_showLogo}: function [][
+    print join @ to :block {
+        color.green"      _  _" color.white.bold" __        __   _     _         "  "\n"
+        color.green"    _| || |_" color.white.bold" \      / /__| |__ (_)_______ "  "\n"
+        color.green"   |_  **  _|" color.white.bold" \ /\ / / _ \ '_ \| |_  / _ \"  "\n"
+        color.green"   |_  **  _|" color.white.bold"\ V  V /  __/ |_) | |/ /  __/"  "\n"
+        color.green"     |_||_|" color.white.bold"   \_/\_/ \___|_.__/|_/___\___|"  "\n"
+    }
+]
+
+{_showHeader}: function [message][
+    print color.cyan "==========================================================================="
+    print color.cyan pad upper message 11
+    print color.cyan "==========================================================================="
+]
+
+{_showInfo}: function [msg inf][
+    if? attr "section" ->
+        print [color.green ("* " ++ msg) inf]
+    else ->
+        print [color.cyan ("   - " ++ msg) inf]
+]
+
+{_showHelp}: function [][
+    print {
+        Usage:
+            webize [command] <options>
+
+        Commands:
+            new <name>                Creates new project
+            build                     Builds current project 
+
+            help                      Show this help screen
+            version                   Show current version
+    }
+]
+
+{_toolExists?}: function [cmd][ 
+    not? empty? strip execute ~{!sh command -v |cmd|} 
+]
 
 ;--------------------------
 ; Helpers
 ;--------------------------
 
-toolExists?: function [cmd][ 
-	not? empty? strip execute ~{!sh command -v |cmd|} 
-]
+linkTo: function [location][
+    i: 0 
+    parts: location 
+    if block? parts -> parts: join.path parts
+    parts: split.path parts
 
-printInfo: function [msg inf][
-	if? not? null? attribute "section" ->
-		print [color.green ("* " ++ msg) inf]
-	else ->
-		print [color.cyan ("   - " ++ msg) inf]
+    while [
+        and? [i < size pagePath]
+             [i < size parts]
+    ][
+        if (pagePath \ i) <> (parts \ i) [ break]
+        i: i + 1
+    ]
+    ret: join.path (repeat [".."] dec (size pagePath)-i) ++ join.path slice parts i (size parts)-1
+    if? ret="" -> "."
+    else -> ret
 ]
 
 ;--------------------------
 ; The main library
 ;--------------------------
 
-newProject: function [target][
-	printInfo.section "creating new project:" target
-	write.directory to :string target ø
-	loop Paths [k,pa][
-		subpath: ~pa
-		printInfo "creating:" subpath
-		write.directory ~pa ø
-	]
-	write ~"|target|/config.art" ""
+{_newProject}: function [project][
+    printInfo.section "creating new project:" project
+    write.directory to :string project ø
+    loop Paths [k,pa][
+        subpath: ~pa
+        printInfo "creating:" subpath
+        write.directory ~pa ø
+    ]
+    write ~"|project|/pages/index.md.art" ""
+    write ~"|project|/theme/default.html" ""
+    write ~"|project|/theme/settings.art" ""
+    write ~"|project|/config.art" ""
 ]
 
-buildProject: function [][
-	if? exists? "config.art" [
-		print "building"
-	]
-	else [
-		print "cannot build: not valid project"
-	]
-]
+{_buildProject}: function [][
+    if? exists? "config.art" [
+        Config: #"config.art" 
 
-printHelp: function [][
-    print ---
-Usage:
-  webize [command] <options>
+        pages: select list.recursive "pages" => [ suffix? & ".art"]
+        count: size pages
+        call {_showHeader} ["rendering"]
+        loop.with: 'c pages 'page [
+            sourcePath: page --"pages/"
+            targetRoute: sourcePath -- extract.extension page
+            targetPath: append join.path @[Target targetRoute] ".html"
+            targetDir: extract.directory targetPath
+            targetFile: extract.filename targetPath
+            write.directory targetDir ø
 
-Commands:
-  new <name>                Creates new project
-  build                     Builds current project 
-  
-  help                      Show this help screen
-  version                   Show current version
----
+            print [color.green pad ~"[|c+1|/|count|]" 11 join.with:" ▪︎ " split.path (sourcePath -- extract.extension sourcePath)]
+
+            keepSearching: true
+            templatePath: ""
+            loop ThemeSettings\routes [route,template][
+                if keepSearching [
+                    if not? empty? match sourcePath route [
+                        templatePath: join.path @[Theme template]
+                        keepSearching: false
+                    ]
+                ]
+            ]
+
+            do [
+                ; MAIN: new read.markdown got\content
+
+                ; if key? ThemeSettings 'postprocess [
+                ; 	loop ThemeSettings\postprocess [k,v] -> replace 'MAIN k v
+                ; ]
+                pagePath: split.path targetRoute
+                W: #.data page
+
+                ; print pagePath
+                rsrcPath: join.path (repeat [".."] (size pagePath)-1) ++ "resources"
+                ; print ["link to documentation/library/arithmetic/somethingelse/doit.html:" "\n\t" linkTo "documentation/library/arithmetic/somethingelse/doit.html"]
+                ; print ["link to documentation/somethingelse/doit.html:" "\n\t" linkTo "documentation/somethingelse/doit.html"]
+                ; print ["link to somethingelse/doit.html:" "\n\t" linkTo "somethingelse/doit.html"]
+                ; print ["rsrcPath:" rsrcPath]
+
+                ; print ["\n"
+                ; 	"route:" split.path targetRoute "\n"
+                ; 	"path:" targetPath "\n"
+                ; 	"in:" targetDir "\n"
+                ; 	"writing file:" targetFile "\n"
+                ; 	"from:" page "\n"
+                ; 	"source:" sourcePath "\n"
+                ; 	"template:" templatePath "\n"
+                ; ]
+
+                ;inspect W
+                rendered: new render.template read templatePath
+                if key? ThemeSettings 'postprocess [
+                    loop ThemeSettings\postprocess [k,v] [
+                        replace 'rendered k v
+                    ]
+                ]
+                write targetPath rendered
+                
+            ]
+            
+        ]
+        call {_showHeader} ["post-processing"]
+        print execute "pwd"
+        loop filter list "theme/resources" => [in? "."] 'res [ 
+            write.directory join.path @[Target "resources" extract.basename res] ø
+            print ["creating folder:" join.path @[Target "resources" extract.basename res]]
+            loop list res 'item [
+                tgt: join.path @[Target item -- "theme/"]
+                print ["copying:" item "to:" extract.directory tgt]
+                case [in? extract.extension item]
+                    when? [[".scss" ".sass"]] [
+                        newTgt: replace tgt extract.extension tgt ".css"
+                        print ~"scss |item| |newTgt|"
+                        execute ~"scss |item| |newTgt|"
+                    ]
+                    else [
+                        print ~"cp |item| |extract.directory tgt|"
+                        execute ~"cp |item| |extract.directory tgt|"
+                    ]
+            ]
+        ]
+    ]
+    else [
+        print "cannot build: not valid project"
+    ]
 ]
 
 initialize: function [][
-	loop ['sass 'coffee 'minify 'cwebp] [tool][
-		set Settings tool (toolExists? tool)
-	]
-	loop Settings [k,v][
-		prints [pad.right k ++ ":" 10]
-		
-		if? boolean? v [
-			if? v -> print "YES"
-			else -> print "NO"
-		]
-		else -> print v
-	]
+    loop ['sass 'coffee 'minify 'cwebp] [tool][
+        set Settings tool (call {_toolExists?} @[tool])
+    ]
 ]
 
 ;--------------------------
@@ -103,15 +222,15 @@ initialize: function [][
 ;--------------------------
 
 if standalone? [
-	initialize
+    call {_showLogo} []
+    initialize
 
-    if empty? arg [ printHelp, exit ]
-
-	command: join.with:" " arg
-	replace 'command "new" "newProject"
-	replace 'command "build" "buildProject"
-
-	do as.agnostic to :block command
+    if empty? arg [ call {_showHelp} [], exit ]
+    
+    case [arg\0=]
+        when? -> "new"   -> call {_newProject} @[arg\1]
+        when? -> "build" -> call {_buildProject} []
+        else  -> print "command not recognized"
 ]
 
 ;==========================================
