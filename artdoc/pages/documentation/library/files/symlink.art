@@ -1,0 +1,31 @@
+name: "symlink"
+address: "0x10B6A0B88"
+type: :function
+module: "Files"
+returns: [
+        :nothing
+    ]
+description: "create symbolic link of file to given destination"
+example: ""
+attributes: #[
+    hard: #[
+        types: [
+                :boolean
+            ]
+        description: "create a hard link"
+        ]
+    ]
+arguments: #[
+    file: [
+            :string
+        ]
+    destination: [
+            :string
+        ]
+    ]
+related: [
+        "Files/copy"
+         "Files/zip"
+         "Files/write"
+         "Files/index"
+    ]

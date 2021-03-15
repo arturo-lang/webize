@@ -1,0 +1,48 @@
+name: "escape"
+address: "0x10B6DD9A8"
+type: :function
+module: "Strings"
+returns: [
+        :string
+         :nothing
+    ]
+description: "escape given string"
+example: ""
+attributes: #[
+    json: #[
+        types: [
+                :boolean
+            ]
+        description: "for literal use in JSON strings"
+        ]
+    regex: #[
+        types: [
+                :boolean
+            ]
+        description: "for literal use in regular expression"
+        ]
+    shell: #[
+        types: [
+                :boolean
+            ]
+        description: "for use in a shell command"
+        ]
+    xml: #[
+        types: [
+                :boolean
+            ]
+        description: "for use in an XML document"
+        ]
+    ]
+arguments: #[
+    string: [
+            :string
+             :literal
+        ]
+    ]
+related: [
+        "Strings/close"
+         "Strings/round"
+         "Strings/benchmark"
+         "Strings/empty"
+    ]

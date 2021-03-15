@@ -1,0 +1,34 @@
+name: "query"
+address: "0x10B6AAE58"
+type: :function
+module: "Databases"
+returns: [
+        :null
+         :integer
+         :block
+    ]
+description: "execute command or block of commands in given database and get returned rows"
+example: ""
+attributes: #[
+    id: #[
+        types: [
+                :boolean
+            ]
+        description: "return last INSERT id"
+        ]
+    ]
+arguments: #[
+    database: [
+            :database
+        ]
+    commands: [
+            :string
+             :block
+        ]
+    ]
+related: [
+        "Databases/combine"
+         "Databases/neg"
+         "Databases/div"
+         "Databases/mod"
+    ]

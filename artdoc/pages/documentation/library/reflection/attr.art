@@ -1,0 +1,39 @@
+name: "attr"
+address: "0x10B6CDE58"
+type: :function
+module: "Reflection"
+returns: [
+        :null
+         :any
+    ]
+description: "get given attribute, if it exists"
+example: {
+        multiply: function [x][
+        ____if? attr? "with" [ 
+        ________x * attr "with"
+        ____] 
+        ____else [ 
+        ________2*x 
+        ____]
+        ]
+        
+        print multiply 5
+        ; 10
+        
+        print multiply.with: 6 5
+        ; 60
+    }
+attributes: #[
+    ]
+arguments: #[
+    name: [
+            :string
+             :literal
+        ]
+    ]
+related: [
+        "Reflection/attr?"
+         "Reflection/exists?"
+         "Reflection/shuffle"
+         "Reflection/unique"
+    ]

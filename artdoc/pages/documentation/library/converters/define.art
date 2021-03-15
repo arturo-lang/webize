@@ -1,0 +1,46 @@
+name: "define"
+address: "0x10B6A77C8"
+type: :function
+module: "Converters"
+returns: [
+        :nothing
+    ]
+description: "define new type with given characteristics"
+example: {
+        define :person [name surname][
+            sayHello: function [][
+                print ["Hello" this\name]
+            ]
+        ]
+        
+        do [
+            a: to :person ["John" "Doe"]
+            print a
+            ; [name:John surname:Doe]
+        
+            print ["Your surname is:" a\surname]
+            ; Doe
+        
+            sayHello a
+            ; Hello John
+        ]
+    }
+attributes: #[
+    ]
+arguments: #[
+    type: [
+            :type
+        ]
+    prototype: [
+            :block
+        ]
+    methods: [
+            :block
+        ]
+    ]
+related: [
+        "Converters/delete"
+         "Converters/append"
+         "Converters/remove"
+         "Converters/type"
+    ]

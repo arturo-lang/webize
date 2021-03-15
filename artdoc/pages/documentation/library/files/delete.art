@@ -1,0 +1,28 @@
+name: "delete"
+address: "0x10B6A05E8"
+type: :function
+module: "Files"
+returns: [
+        :nothing
+    ]
+description: "delete file at given path"
+example: ""
+attributes: #[
+    directory: #[
+        types: [
+                :boolean
+            ]
+        description: "path is a directory"
+        ]
+    ]
+arguments: #[
+    file: [
+            :string
+        ]
+    ]
+related: [
+        "Files/list"
+         "Files/read"
+         "Files/write"
+         "Files/type"
+    ]

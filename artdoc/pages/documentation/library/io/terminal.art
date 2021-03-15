@@ -1,0 +1,22 @@
+name: "terminal"
+address: "0x10B6B46D8"
+type: :function
+module: "Io"
+returns: [
+        :dictionary
+    ]
+description: "get info about terminal"
+example: {
+        print terminal      ; [width:107 height:34]
+        terminal\width      ; => 107
+    }
+attributes: #[
+    ]
+arguments: #[
+    ]
+related: [
+        "Io/clear"
+         "Io/now"
+         "Io/env"
+         "Io/hash"
+    ]

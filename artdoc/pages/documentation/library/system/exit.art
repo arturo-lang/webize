@@ -1,0 +1,23 @@
+name: "exit"
+address: "0x10B6E3318"
+type: :function
+module: "System"
+returns: [
+        :nothing
+    ]
+description: "exit program"
+example: {
+        exit              ; (terminates the program)
+        
+        exit.with: 3      ; (terminates the program with code 3)
+    }
+attributes: #[
+    ]
+arguments: #[
+    ]
+related: [
+        "System/clear"
+         "System/stack"
+         "System/now"
+         "System/round"
+    ]

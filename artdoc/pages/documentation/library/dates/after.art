@@ -1,0 +1,77 @@
+name: "after"
+address: "0x10B6A0138"
+type: :function
+module: "Dates"
+returns: [
+        :date
+    ]
+description: "get date after given one using interval"
+example: ""
+attributes: #[
+    nanoseconds: #[
+        types: [
+                :integer
+            ]
+        description: "add given number of nanoseconds"
+        ]
+    milliseconds: #[
+        types: [
+                :integer
+            ]
+        description: "add given number of milliseconds"
+        ]
+    seconds: #[
+        types: [
+                :integer
+            ]
+        description: "add given number of seconds"
+        ]
+    minutes: #[
+        types: [
+                :integer
+            ]
+        description: "add given number of minutes"
+        ]
+    hours: #[
+        types: [
+                :integer
+            ]
+        description: "add given number of hours"
+        ]
+    days: #[
+        types: [
+                :integer
+            ]
+        description: "add given number of days"
+        ]
+    weeks: #[
+        types: [
+                :integer
+            ]
+        description: "add given number of weeks"
+        ]
+    months: #[
+        types: [
+                :integer
+            ]
+        description: "add given number of months"
+        ]
+    years: #[
+        types: [
+                :integer
+            ]
+        description: "add given number of years"
+        ]
+    ]
+arguments: #[
+    date: [
+            :literal
+             :date
+        ]
+    ]
+related: [
+        "Dates/before"
+         "Dates/module"
+         "Dates/hash"
+         "Dates/type"
+    ]

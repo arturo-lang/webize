@@ -1,0 +1,27 @@
+name: "null?"
+address: "0x10B6D55E8"
+type: :function
+module: "Reflection"
+returns: [
+        :boolean
+    ]
+description: "checks if given value is of type :null"
+example: {
+        print null? null            ; true
+        print null? ø               ; true
+        
+        print null? 123             ; false
+    }
+attributes: #[
+    ]
+arguments: #[
+    value: [
+            :any
+        ]
+    ]
+related: [
+        "Reflection/char?"
+         "Reflection/date?"
+         "Reflection/label?"
+         "Reflection/path?"
+    ]

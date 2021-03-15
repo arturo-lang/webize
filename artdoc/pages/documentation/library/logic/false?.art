@@ -1,0 +1,22 @@
+name: "false?"
+address: "0x10B6B8228"
+type: :function
+module: "Logic"
+returns: [
+        :boolean
+    ]
+description: "returns true if given value is false; otherwise, it returns false"
+example: ""
+attributes: #[
+    ]
+arguments: #[
+    value: [
+            :boolean
+        ]
+    ]
+related: [
+        "Logic/true?"
+         "Logic/neg"
+         "Logic/database?"
+         "Logic/literal?"
+    ]

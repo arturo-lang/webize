@@ -1,0 +1,25 @@
+name: "inline?"
+address: "0x10B6D4D68"
+type: :function
+module: "Reflection"
+returns: [
+        :boolean
+    ]
+description: "checks if given value is of type :inline"
+example: {
+        inline? first [(something) x]
+        ; => true
+    }
+attributes: #[
+    ]
+arguments: #[
+    value: [
+            :any
+        ]
+    ]
+related: [
+        "Reflection/integer?"
+         "Reflection/string?"
+         "Reflection/binary?"
+         "Reflection/block?"
+    ]

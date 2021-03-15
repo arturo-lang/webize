@@ -1,0 +1,19 @@
+name: "clear"
+address: "0x10B6B4138"
+type: :function
+module: "Io"
+returns: [
+        :nothing
+    ]
+description: "clear terminal"
+example: "clear             ; (clears the screen)"
+attributes: #[
+    ]
+arguments: #[
+    ]
+related: [
+        "Io/exit"
+         "Io/now"
+         "Io/terminal"
+         "Io/round"
+    ]

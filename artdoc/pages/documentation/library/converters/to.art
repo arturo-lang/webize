@@ -1,0 +1,50 @@
+name: "to"
+address: "0x10B6A78B8"
+type: :function
+module: "Converters"
+returns: [
+        :any
+    ]
+description: "convert value to given type"
+example: {
+        to :string 2020               ; "2020"
+        to :integer "2020"            ; 2020
+        
+        to :integer `A`               ; 65
+        to :char 65                   ; `A`
+        
+        to :integer 4.3               ; 4
+        to :floating 4                ; 4.0
+        
+        to :boolean 0                 ; false
+        to :boolean 1                 ; true
+        to :boolean "true"            ; true
+        
+        to :literal "symbol"          ; 'symbol
+        to :string 'symbol            ; "symbol"
+        to :string :word              ; "word"
+        
+        to :block "one two three"     ; [one two three]
+    }
+attributes: #[
+    format: #[
+        types: [
+                :string
+            ]
+        description: "use given format (for dates)"
+        ]
+    ]
+arguments: #[
+    type: [
+            :type
+        ]
+    value: [
+            :any
+        ]
+    ]
+related: [
+        "Converters/append"
+         "Converters/let"
+         "Converters/var"
+         "Converters/hash"
+    ]

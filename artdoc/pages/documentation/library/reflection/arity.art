@@ -1,0 +1,19 @@
+name: "arity"
+address: "0x10B6CDB88"
+type: :function
+module: "Reflection"
+returns: [
+        :dictionary
+    ]
+description: "get index of function arities"
+example: ""
+attributes: #[
+    ]
+arguments: #[
+    ]
+related: [
+        "Reflection/shuffle"
+         "Reflection/type"
+         "Reflection/env"
+         "Reflection/terminal"
+    ]

@@ -1,0 +1,32 @@
+name: "else"
+address: "0x10B6A86D8"
+type: :function
+module: "Core"
+returns: [
+        :nothing
+    ]
+description: "perform action, if last condition was not true"
+example: {
+        x: 2
+        z: 3
+        
+        if? x>z [
+            print "x was greater than z"
+        ]
+        else [
+            print "nope, x was not greater than z"
+        ]
+    }
+attributes: #[
+    ]
+arguments: #[
+    otherwise: [
+            :block
+        ]
+    ]
+related: [
+        "Core/unless"
+         "Core/if"
+         "Core/try"
+         "Core/try?"
+    ]

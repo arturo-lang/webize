@@ -1,0 +1,33 @@
+name: "reverse"
+address: "0x10B696C78"
+type: :function
+module: "Collections"
+returns: [
+        :string
+         :block
+         :nothing
+    ]
+description: "reverse given collection"
+example: {
+        print reverse [1 2 3 4]           ; 4 3 2 1
+        print reverse "Hello World"       ; dlroW olleH
+        
+        str: "my string"
+        reverse 'str
+        print str                         ; gnirts ym
+    }
+attributes: #[
+    ]
+arguments: #[
+    collection: [
+            :string
+             :literal
+             :block
+        ]
+    ]
+related: [
+        "Collections/empty"
+         "Collections/dec"
+         "Collections/append"
+         "Collections/remove"
+    ]

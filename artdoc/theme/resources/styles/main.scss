@@ -1,0 +1,81 @@
+.tag:not(body){
+    border-radius: 0 !important;
+    color: #FFF;
+
+    .is-stars   {background-color:#999;}
+    .is-chat    {background-color:#ff7d37;}
+    .is-build   {background-color: #45cb11;}
+}
+
+.screenshot {
+    box-shadow: 0 0 28px 3px #7a347b; 
+    mix-blend-mode: luminosity; 
+    border-radius: 10px;
+
+    &:hover {
+        mix-blend-mode: normal;
+    }
+}
+
+.motto {
+    -webkit-background-clip: text; 
+    -moz-background-clip: text; 
+    background-clip: text; 
+    color: transparent; 
+    text-shadow: rgba(255,255,255,0.5) 0px 3px 3px; 
+    font-size:40px; 
+    font-weight:bold; 
+    color:#DDD;
+    margin-bottom:2em;
+}
+
+.card {
+    box-shadow: none !important;
+    border: 1px solid #E6E6E6;
+}
+
+.footer {
+    padding-bottom: 3em;
+}
+
+sup {
+    font-variant: all-small-caps;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+}
+
+.fab {
+    vertical-align: middle;
+}
+
+.first-td {
+    text-align: center !important;
+}
+
+@media screen and (min-width: 1024px){
+.navbar-link.is-active:not(:focus):not(:hover), a.navbar-item.is-active:not(:focus):not(:hover) {
+    background-color:#6a156b; 
+}}
+
+.navbar-item.is-tab.is-active {
+    border-bottom-color:#6a156b;
+    color: white;
+    background-color:#6a156b; 
+}
+
+code { font-family: 'Fira Code', monospace; }
+
+@supports (font-variation-settings: normal) {
+    code { font-family: 'Fira Code VF', monospace; }
+}
+
+.logo-secondary {
+    color: #BBB;
+}
+
+/* .box {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+} */

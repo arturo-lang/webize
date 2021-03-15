@@ -1,0 +1,29 @@
+name: "permissions"
+address: "0x10B6A07C8"
+type: :function
+module: "Files"
+returns: [
+        :null
+         :dictionary
+    ]
+description: "check permissions of given file"
+example: ""
+attributes: #[
+    set: #[
+        types: [
+                :dictionary
+            ]
+        description: "set using given file permissions"
+        ]
+    ]
+arguments: #[
+    file: [
+            :string
+        ]
+    ]
+related: [
+        "Files/sin"
+         "Files/sqrt"
+         "Files/indent"
+         "Files/let"
+    ]

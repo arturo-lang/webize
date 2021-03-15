@@ -1,0 +1,25 @@
+name: "type"
+address: "0x10B6D5E58"
+type: :function
+module: "Reflection"
+returns: [
+        :type
+    ]
+description: "get type of given value"
+example: {
+        print type 18966          ; :integer
+        print type "hello world"  ; :string
+    }
+attributes: #[
+    ]
+arguments: #[
+    value: [
+            :any
+        ]
+    ]
+related: [
+        "Reflection/hash"
+         "Reflection/let"
+         "Reflection/sqrt"
+         "Reflection/list"
+    ]

@@ -1,0 +1,29 @@
+name: "symbols"
+address: "0x10B6D5D68"
+type: :function
+module: "Reflection"
+returns: [
+        :dictionary
+    ]
+description: "get currently defined symbols"
+example: {
+        a: 2
+        b: "hello"
+        
+        print symbols
+        
+        ; [
+        ;____a: 2
+        ;____b: "hello"
+        ;_]
+    }
+attributes: #[
+    ]
+arguments: #[
+    ]
+related: [
+        "Reflection/stack"
+         "Reflection/now"
+         "Reflection/info"
+         "Reflection/shuffle"
+    ]

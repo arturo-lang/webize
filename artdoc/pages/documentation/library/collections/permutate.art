@@ -1,0 +1,25 @@
+name: "permutate"
+address: "0x10B6968B8"
+type: :function
+module: "Collections"
+returns: [
+        :block
+    ]
+description: "get all possible permutations of the elements in given collection"
+example: {
+        permutate [A B C]
+        ; => [[A B C] [A C B] [C A B] [B A C] [B C A] [C B A]]
+    }
+attributes: #[
+    ]
+arguments: #[
+    collection: [
+            :block
+        ]
+    ]
+related: [
+        "Collections/combine"
+         "Collections/max"
+         "Collections/min"
+         "Collections/squeeze"
+    ]

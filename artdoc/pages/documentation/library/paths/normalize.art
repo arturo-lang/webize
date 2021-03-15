@@ -1,0 +1,30 @@
+name: "normalize"
+address: "0x10B6CDA98"
+type: :function
+module: "Paths"
+returns: [
+        :string
+         :nothing
+    ]
+description: "get normalized version of given path"
+example: ""
+attributes: #[
+    executable: #[
+        types: [
+                :boolean
+            ]
+        description: "treat path as executable"
+        ]
+    ]
+arguments: #[
+    path: [
+            :string
+             :literal
+        ]
+    ]
+related: [
+        "Paths/color"
+         "Paths/list"
+         "Paths/sqrt"
+         "Paths/union"
+    ]

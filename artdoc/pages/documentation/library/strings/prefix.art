@@ -1,0 +1,32 @@
+name: "prefix"
+address: "0x10B6DF408"
+type: :function
+module: "Strings"
+returns: [
+        :string
+         :nothing
+    ]
+description: "add given prefix to string"
+example: {
+        prefix "ello" "h"                  ; => "hello"
+        
+        str: "ello"
+        prefix 'str                        ; str: "hello"
+    }
+attributes: #[
+    ]
+arguments: #[
+    string: [
+            :string
+             :literal
+        ]
+    prefix: [
+            :string
+        ]
+    ]
+related: [
+        "Strings/replace"
+         "Strings/suffix"
+         "Strings/prints"
+         "Strings/escape"
+    ]

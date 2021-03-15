@@ -1,0 +1,37 @@
+name: "with"
+address: "0x10B6A7E58"
+type: :function
+module: "Converters"
+returns: [
+        :block
+    ]
+description: "create closure-style block by embedding given words"
+example: {
+        f: function [x][ 
+            with [x][ 
+                "the multiple of" x "is" 2*x 
+            ] 
+        ]
+        
+        multiplier: f 10
+        
+        print multiplier
+        ; the multiple of 10 is 20
+    }
+attributes: #[
+    ]
+arguments: #[
+    embed: [
+            :literal
+             :block
+        ]
+    body: [
+            :block
+        ]
+    ]
+related: [
+        "Converters/new"
+         "Converters/extend"
+         "Converters/sort"
+         "Converters/write"
+    ]

@@ -1,0 +1,23 @@
+name: "max"
+address: "0x10B6966D8"
+type: :function
+module: "Collections"
+returns: [
+        :null
+         :any
+    ]
+description: "get maximum element in given collection"
+example: "print max [4 2 8 5 1 9]       ; 9"
+attributes: #[
+    ]
+arguments: #[
+    collection: [
+            :block
+        ]
+    ]
+related: [
+        "Collections/min"
+         "Collections/sample"
+         "Collections/combine"
+         "Collections/size"
+    ]

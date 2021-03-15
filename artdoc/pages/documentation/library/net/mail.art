@@ -1,0 +1,39 @@
+name: "mail"
+address: "0x10B6B8A98"
+type: :function
+module: "Net"
+returns: [
+        :nothing
+    ]
+description: "send mail using given message and configuration"
+example: {
+        mail "recipient@somemail.com"
+            #[
+                title: "Hello from Arturo"
+                content: "Arturo rocks!"
+            ]
+            #[
+                server: "mymailserver.com"
+                username: "myusername"
+                password: "mypass123"
+            ]
+    }
+attributes: #[
+    ]
+arguments: #[
+    recipient: [
+            :string
+        ]
+    message: [
+            :dictionary
+        ]
+    config: [
+            :dictionary
+        ]
+    ]
+related: [
+        "Net/neg"
+         "Net/append"
+         "Net/unzip"
+         "Net/zip"
+    ]

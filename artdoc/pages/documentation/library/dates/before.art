@@ -1,0 +1,76 @@
+name: "before"
+address: "0x10B6A0228"
+type: :function
+module: "Dates"
+returns: [
+        :date
+    ]
+description: "get date before given one using interval"
+example: ""
+attributes: #[
+    nanoseconds: #[
+        types: [
+                :integer
+            ]
+        description: "subtract given number of nanoseconds"
+        ]
+    milliseconds: #[
+        types: [
+                :integer
+            ]
+        description: "subtract given number of milliseconds"
+        ]
+    seconds: #[
+        types: [
+                :integer
+            ]
+        description: "subtract given number of seconds"
+        ]
+    minutes: #[
+        types: [
+                :integer
+            ]
+        description: "subtract given number of minutes"
+        ]
+    hours: #[
+        types: [
+                :integer
+            ]
+        description: "subtract given number of hours"
+        ]
+    days: #[
+        types: [
+                :integer
+            ]
+        description: "subtract given number of days"
+        ]
+    weeks: #[
+        types: [
+                :integer
+            ]
+        description: "subtract given number of weeks"
+        ]
+    months: #[
+        types: [
+                :integer
+            ]
+        description: "subtract given number of months"
+        ]
+    years: #[
+        types: [
+                :integer
+            ]
+        description: "subtract given number of years"
+        ]
+    ]
+arguments: #[
+    date: [
+            :date
+        ]
+    ]
+related: [
+        "Dates/after"
+         "Dates/module"
+         "Dates/hash"
+         "Dates/digest"
+    ]

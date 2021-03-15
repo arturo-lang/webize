@@ -1,0 +1,28 @@
+name: "execute"
+address: "0x10B6E3228"
+type: :function
+module: "System"
+returns: [
+        :string
+    ]
+description: "execute given shell command"
+example: {
+        print execute "pwd"
+        ; /Users/admin/Desktop
+        
+        split.lines execute "ls"
+        ; => ["tests" "var" "data.txt"]
+    }
+attributes: #[
+    ]
+arguments: #[
+    command: [
+            :string
+        ]
+    ]
+related: [
+        "System/empty"
+         "System/reverse"
+         "System/escape"
+         "System/exists?"
+    ]
