@@ -1,9 +1,9 @@
-<|= read relative "artdoc/theme/components/head.html" |>
+<||= read relative "artdoc/theme/components/head.html" ||>
     <body data-prismjs-copy-timeout="500">
         <nav class="navbar is-fixed-top is-boxed" role="navigation" aria-label="main navigation" style="border-bottom:2px solid #6a156b;">
             <div class="navbar-brand">
                 <a class="navbar-item" href="#" style="font-weight:bold; font-size: 1.2em; color: black">
-                    <img src="<|= linkTo {/} |>/images/logo.png" width="28" height="28" alt="arturo logo">
+                    <img src="<||= linkTo {/} ||>/images/logo.png" width="28" height="28" alt="arturo logo">
                     &nbsp;&nbsp;Arturo:&nbsp;&nbsp;<span style="color:#999;">[programming language]</span>
                 </a>
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMain">
@@ -42,14 +42,14 @@
                             <li><a href="Command-Line">Command Line</a></li>
                             <li><a href="Library">Library</a>
                                 <ul>
-                                    <|= loop ["Arithmetic" "Binary" "Collections" "Comparison" "Converters" "Core" "Crypto" "Databases" "Dates" "Files" "Io" "Iterators" "Logic" "Net" "Numbers" "Paths" "Reflection" "Sets" "Strings" "System" "Ui"] 'modul [ |>
+                                    <||= loop ["Arithmetic" "Binary" "Collections" "Comparison" "Converters" "Core" "Crypto" "Databases" "Dates" "Files" "Io" "Iterators" "Logic" "Net" "Numbers" "Paths" "Reflection" "Sets" "Strings" "System" "Ui"] 'modul [ ||>
                                         
-                                        <| if? contains? pagePath lower modul [|>
-                                            <li><a class="is-active" href="../../library/<|=modul|>.html"><|= modul |></a></li>
-                                        <| ] else [ |>
-                                            <li><a href="../../library/<|=modul|>.html"><|= modul |></a></li>
-                                        <| ] |>
-                                    <| ] |>
+                                        <|| if? contains? pagePath lower modul [||>
+                                            <li><a class="is-active" href="../../library/<||=modul||>.html"><||= modul ||></a></li>
+                                        <|| ] else [ ||>
+                                            <li><a href="../../library/<||=modul||>.html"><||= modul ||></a></li>
+                                        <|| ] ||>
+                                    <|| ] ||>
                                     <!-- <li><a href="Library-%E2%80%A3-Arithmetic">Arithmetic</a></li>
                                     <li><a href="Library-%E2%80%A3-Binary">Binary</a></li>
                                     <li><a class="is-active" href="Library-%E2%80%A3-Collections">Collections</a></li>
@@ -112,7 +112,7 @@
                 </div>
                 <div class="column is-9 p-6">
                     <div class="content">
-                        <|= read.markdown W\content |>
+                        <||= read.markdown W\content ||>
                     </div>
 
 
