@@ -274,16 +274,14 @@
                 </div>
                 <div class="column is-9 p-6">
                     <div class="content">
-                        <hr />
+                        <hr>
 <ul>
 <li><a href="#introduction">Introduction</a></li>
-<li><a href="#the-main-components">The main components</a>
-<ul>
+<li><a href="#the-main-components">The main components</a><ul>
 <li><a href="#words">Words</a></li>
 <li><a href="#labels">Labels</a></li>
 <li><a href="#symbols">Symbols</a></li>
-<li><a href="#values">Values</a>
-<ul>
+<li><a href="#values">Values</a><ul>
 <li><a href="#null">:null</a></li>
 <li><a href="#boolean">:boolean</a></li>
 <li><a href="#integer">:integer</a></li>
@@ -301,21 +299,18 @@
 <li><a href="#binary">:binary</a></li>
 </ul>
 </li>
-<li><a href="#attributes">Attributes</a>
-<ul>
+<li><a href="#attributes">Attributes</a><ul>
 <li><a href="#attr">:attr</a></li>
 <li><a href="#attrLabel">:attrLabel</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#precedence-and-evaluation">Precedence and evaluation</a>
-<ul>
+<li><a href="#precedence-and-evaluation">Precedence and evaluation</a><ul>
 <li><a href="#the-right-to-left-rule">The right-to-left rule</a></li>
 </ul>
 </li>
-<li><a href="#syntactic-sugar">Syntactic sugar</a>
-<ul>
+<li><a href="#syntactic-sugar">Syntactic sugar</a><ul>
 <li><a href="#right-arrow-operator--">Right-arrow operator: <code>-&gt;</code></a></li>
 <li><a href="#fat-right-arrow-operator-">Fat right-arrow operator: <code>=&gt;</code></a></li>
 <li><a href="#pipe-operator-">Pipe operator: <code>|</code></a></li>
@@ -323,7 +318,7 @@
 </li>
 <li><a href="#conclusion">Conclusion</a></li>
 </ul>
-<hr />
+<hr>
 <h2 class="title is-2 is-spaced mt-6">Introduction</h2>
 <p>Arturo's syntax is probably as easy as it could get. Basically, you could say: <em>there is no syntax</em>.</p>
 <p>Let's try to resume some key points of Arturo's no-syntax:</p>
@@ -439,20 +434,18 @@ y: 876528347613438247982374913423423947329
 <ul>
 <li>using double quotes: <code>x: &quot;this is a string&quot;</code></li>
 <li>using right <em>smart-quote</em> notation <code>x: » This is a string</code> (in this case, everything following <code>»</code> till the end of the line, will be considered a string)</li>
-<li>
-<h2 class="title is-2 is-spaced mt-6">using triple-dash blocks for literal, what-you-see-is-what-you-get, multi-line strings:
-```arturo
-x:</h2>
-<h2 class="title is-2 is-spaced mt-6">this is a very
+<li>using triple-dash blocks for literal, what-you-see-is-what-you-get, multi-line strings:<pre><code class="language-arturo">x: 
+---
+this is a very
 long string
 that spans more
 than
 one
-line</h2>
-<pre><code></code></pre>
+line
+---
+</code></pre>
 </li>
-<li>using curly-brace blocks again for stripped (read as: <em>spaces at the beginning and end of each line are ignored</em>) multi-line strings:
-<pre><code class="language-arturo">x: {
+<li>using curly-brace blocks again for stripped (read as: <em>spaces at the beginning and end of each line are ignored</em>) multi-line strings:<pre><code class="language-arturo">x: {
     this is yet
     another
     very
@@ -580,7 +573,7 @@ print now\year
 <p>Another interesting feature of Arturo is what we'll analyze here: attributes.</p>
 <p>Basically, <em>attributes</em> are nothing but an easy way of defining optional named parameters for functions - but which can however transcend between different function calls.</p>
 <p>There are two types:</p>
-<p>a. attributes<br />
+<p>a. attributes<br>
 b. attribute labels</p>
 <h4 class="subtitle is-4 is-spaced mt-6">:attr</h4>
 <p>Attributes are basically optional on/off-type of values, set during a function call, that is there to denote some variation of the initial meaning of the function. To define an attribute, we'll be using a <code>.</code>(dot) followed by a normal word: <code>\.\w+</code></p>
@@ -641,25 +634,15 @@ print &quot;Done&quot;
 </code></pre>
 <p>or (giving precedence to the multiplication, artificially, using parentheses):</p>
 <pre><code class="language-arturo">(2 * 3) + 4
-``` 
-
-Syntactic sugar
----
-
-As you have hopefully seen so far, Arturo is rather simple, with fairly simple rules and that's pretty much it.
-
-However, we also have some &quot;syntactic sugar&quot;: a fancy way of referring to syntactic constructs, so that something more complicated will look better, or easier-to-write, or more readable.
-
-Here you'll learn about some useful examples of *syntactic sugar* supported in Arturo.
-
-### Right-arrow operator: `-&gt;`
-
-The function of the right operator is rather straightforward: basically, it wraps the following *terminal* value inside a block.
-
-Let's take a simple example.
-
-```arturo
-x: -&gt; 2
+</code></pre>
+<h2 class="title is-2 is-spaced mt-6">Syntactic sugar</h2>
+<p>As you have hopefully seen so far, Arturo is rather simple, with fairly simple rules and that's pretty much it.</p>
+<p>However, we also have some &quot;syntactic sugar&quot;: a fancy way of referring to syntactic constructs, so that something more complicated will look better, or easier-to-write, or more readable.</p>
+<p>Here you'll learn about some useful examples of <em>syntactic sugar</em> supported in Arturo.</p>
+<h3 class="title is-3 is-spaced mt-5">Right-arrow operator: <code>-&gt;</code></h3>
+<p>The function of the right operator is rather straightforward: basically, it wraps the following <em>terminal</em> value inside a block.</p>
+<p>Let's take a simple example.</p>
+<pre><code class="language-arturo">x: -&gt; 2
 </code></pre>
 <p>This is 100% equivalent to:</p>
 <pre><code class="language-arturo">x: [2]
@@ -696,7 +679,7 @@ x: -&gt; 2
 <pre><code class="language-arturo">x: $ =&gt; [add &amp; &amp;]
 </code></pre>
 <p>(The first <code>&amp;</code> will pop the first argument, and the second the next one - and so on...)</p>
-<hr />
+<hr>
 <p>As you can already imagine, this is perfect for easily defining functions or action blocks that take exactly one parameter.</p>
 <p>For example, to print an array of the even numbers between 1 and 10:</p>
 <pre><code class="language-arturo">print select 1..10 'x [even? x]
@@ -727,15 +710,13 @@ x: -&gt; 2
 <p>which would be like writing:</p>
 <pre><code class="language-arturo">print select map 1..10 'x [2*x] 'x [even? x] 
 </code></pre>
-<hr />
+<hr>
 <h2 class="title is-2 is-spaced mt-6">Conclusion</h2>
 <p>If you made it till here, then I can assure you: you've already learned more than you need in order to be fully proficient in Arturo.</p>
 <p>Just head to the <a href="https://github.com/arturo-lang/arturo/wiki/Library">Library Reference</a> and have a look at the built-in functions (with explanations and example code) and see what's already available for you or - if you want to see the language in action - just browse through the <a href="https://github.com/arturo-lang/arturo/tree/master/examples">examples/</a> folder in the main source repo: there are many many <em>working</em> examples, to get more than just an idea.</p>
 <p><strong>Welcome on board! :)</strong></p>
 
                     </div>
-
-
                 </div>
             </div>
         </main>
