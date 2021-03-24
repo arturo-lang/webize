@@ -1,5 +1,5 @@
 name: "ln"
-address: "0x10B6C3318"
+address: "0x109ED1C78"
 type: :function
 module: "Numbers"
 returns: [

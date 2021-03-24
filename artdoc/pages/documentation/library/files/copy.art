@@ -1,12 +1,18 @@
 name: "copy"
-address: "0x10B6A04F8"
+address: "0x109EB1E58"
 type: :function
 module: "Files"
 returns: [
         :nothing
     ]
 description: "copy file at path to given destination"
-example: ""
+example: {
+        copy "testscript.art" normalize.tilde "~/Desktop/testscript.art"
+        ; copied file
+        
+        copy "testfolder" normalize.tilde "~/Desktop/testfolder"
+        ; copied whole folder
+    }
 attributes: #[
     directory: #[
         types: [

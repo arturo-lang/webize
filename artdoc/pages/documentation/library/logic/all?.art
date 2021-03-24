@@ -1,5 +1,5 @@
 name: "all?"
-address: "0x10B6B4E58"
+address: "0x109EC88B8"
 type: :function
 module: "Logic"
 returns: [

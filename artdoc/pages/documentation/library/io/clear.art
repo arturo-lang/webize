@@ -1,5 +1,5 @@
 name: "clear"
-address: "0x10B6B4138"
+address: "0x109EC5A98"
 type: :function
 module: "Io"
 returns: [
@@ -15,5 +15,5 @@ related: [
         "Io/exit"
          "Io/now"
          "Io/terminal"
-         "Io/round"
+         "Io/null"
     ]

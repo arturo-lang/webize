@@ -1,5 +1,5 @@
 name: "gcd"
-address: "0x10B6C3228"
+address: "0x109ED1B88"
 type: :function
 module: "Numbers"
 returns: [

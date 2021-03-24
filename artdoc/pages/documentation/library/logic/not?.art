@@ -1,5 +1,5 @@
 name: "not?"
-address: "0x10B6B84F8"
+address: "0x109EC8E58"
 type: :function
 module: "Logic"
 returns: [
@@ -19,6 +19,7 @@ attributes: #[
 arguments: #[
     value: [
             :boolean
+             :block
         ]
     ]
 related: [

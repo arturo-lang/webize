@@ -1,5 +1,5 @@
 name: "suffix"
-address: "0x10B6DF9A8"
+address: "0x109EF2A98"
 type: :function
 module: "Strings"
 returns: [

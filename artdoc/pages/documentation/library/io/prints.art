@@ -1,5 +1,5 @@
 name: "prints"
-address: "0x10B6B45E8"
+address: "0x109EC8048"
 type: :function
 module: "Io"
 returns: [

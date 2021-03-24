@@ -1,5 +1,5 @@
 name: "slice"
-address: "0x10B6A1228"
+address: "0x109EAAA98"
 type: :function
 module: "Collections"
 returns: [

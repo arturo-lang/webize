@@ -1,5 +1,5 @@
 name: "insert"
-address: "0x10B696318"
+address: "0x109EA4B88"
 type: :function
 module: "Collections"
 returns: [
@@ -17,7 +17,7 @@ example: {
         ; hello
         
         dict: #[
-        ____name: John
+            name: John
         ]
         
         insert 'dict 'name "Jane"

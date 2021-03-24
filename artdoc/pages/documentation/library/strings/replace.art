@@ -1,5 +1,5 @@
 name: "replace"
-address: "0x10B6DF7C8"
+address: "0x109EF28B8"
 type: :function
 module: "Strings"
 returns: [

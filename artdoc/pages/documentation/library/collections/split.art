@@ -1,5 +1,5 @@
 name: "split"
-address: "0x10B6A1408"
+address: "0x109EAAC78"
 type: :function
 module: "Collections"
 returns: [
@@ -37,6 +37,7 @@ attributes: #[
     by: #[
         types: [
                 :string
+                 :block
             ]
         description: "split using given separator"
         ]
@@ -74,7 +75,7 @@ arguments: #[
     ]
 related: [
         "Collections/shuffle"
+         "Collections/path"
          "Collections/get"
          "Collections/list"
-         "Collections/empty?"
     ]

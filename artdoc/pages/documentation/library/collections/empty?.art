@@ -1,5 +1,5 @@
 name: "empty?"
-address: "0x10B690A98"
+address: "0x109EA4408"
 type: :function
 module: "Collections"
 returns: [

@@ -1,5 +1,5 @@
 name: "case"
-address: "0x10B6A8228"
+address: "0x109EB9A98"
 type: :function
 module: "Core"
 returns: [
@@ -21,8 +21,8 @@ arguments: #[
         ]
     ]
 related: [
-        "Core/abs"
+        "Core/sys"
+         "Core/abs"
          "Core/gamma"
          "Core/and"
-         "Core/nand"
     ]

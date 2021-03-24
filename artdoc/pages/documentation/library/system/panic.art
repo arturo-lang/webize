@@ -1,5 +1,5 @@
 name: "panic"
-address: "0x10B6E34F8"
+address: "0x109EF56D8"
 type: :function
 module: "System"
 returns: [

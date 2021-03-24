@@ -1,5 +1,5 @@
 name: "extract"
-address: "0x10B6CD8B8"
+address: "0x109EC14F8"
 type: :function
 module: "Paths"
 returns: [
@@ -112,8 +112,8 @@ arguments: #[
         ]
     ]
 related: [
-        "Paths/stack"
+        "Paths/list"
+         "Paths/path"
+         "Paths/stack"
          "Paths/exit"
-         "Paths/list"
-         "Paths/delete"
     ]

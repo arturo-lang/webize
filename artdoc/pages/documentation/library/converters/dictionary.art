@@ -1,5 +1,5 @@
 name: "dictionary"
-address: "0x10B6A79A8"
+address: "0x109EB9318"
 type: :function
 module: "Converters"
 returns: [

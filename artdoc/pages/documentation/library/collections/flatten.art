@@ -1,5 +1,5 @@
 name: "flatten"
-address: "0x10B690D68"
+address: "0x109EA46D8"
 type: :function
 module: "Collections"
 returns: [

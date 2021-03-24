@@ -1,12 +1,15 @@
 name: "delete"
-address: "0x10B6A05E8"
+address: "0x109EC5048"
 type: :function
 module: "Files"
 returns: [
         :nothing
     ]
 description: "delete file at given path"
-example: ""
+example: {
+        delete "testscript.art"
+        ; file deleted
+    }
 attributes: #[
     directory: #[
         types: [

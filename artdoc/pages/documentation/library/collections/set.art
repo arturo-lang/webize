@@ -1,5 +1,5 @@
 name: "set"
-address: "0x10B696E58"
+address: "0x109EAA7C8"
 type: :function
 module: "Collections"
 returns: [
@@ -8,8 +8,8 @@ returns: [
 description: "set collection\'s item at index to given value"
 example: {
         myDict: #[ 
-        ____name: "John"
-        ____age: 34
+            name: "John"
+            age: 34
         ]
         
         set myDict 'name "Michael"        ; => [name: "Michael", age: 34]

@@ -1,5 +1,5 @@
 name: "min"
-address: "0x10B6967C8"
+address: "0x109EAA138"
 type: :function
 module: "Collections"
 returns: [

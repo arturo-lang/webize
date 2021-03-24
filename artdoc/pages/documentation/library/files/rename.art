@@ -1,12 +1,15 @@
 name: "rename"
-address: "0x10B6A0A98"
+address: "0x109EC54F8"
 type: :function
 module: "Files"
 returns: [
         :nothing
     ]
 description: "rename file at path using given new path name"
-example: ""
+example: {
+        rename "README.md" "READIT.md"
+        ; file renamed
+    }
 attributes: #[
     directory: #[
         types: [
@@ -27,5 +30,5 @@ related: [
         "Files/copy"
          "Files/delete"
          "Files/read"
-         "Files/module"
+         "Files/list"
     ]

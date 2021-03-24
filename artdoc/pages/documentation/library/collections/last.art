@@ -1,5 +1,5 @@
 name: "last"
-address: "0x10B6965E8"
+address: "0x109EA4E58"
 type: :function
 module: "Collections"
 returns: [

@@ -1,5 +1,5 @@
 name: "keys"
-address: "0x10B6964F8"
+address: "0x109EA4D68"
 type: :function
 module: "Collections"
 returns: [
@@ -8,8 +8,8 @@ returns: [
 description: "get list of keys for given dictionary"
 example: {
         user: #[
-        ____name: "John"
-        ____surname: "Doe"
+            name: "John"
+            surname: "Doe"
         ]
         
         keys user

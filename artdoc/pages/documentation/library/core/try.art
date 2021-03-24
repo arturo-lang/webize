@@ -1,5 +1,5 @@
 name: "try"
-address: "0x10B6AA228"
+address: "0x109EBAB88"
 type: :function
 module: "Core"
 returns: [
@@ -36,6 +36,6 @@ arguments: #[
 related: [
         "Core/try?"
          "Core/else"
+         "Core/sys"
          "Core/as"
-         "Core/do"
     ]

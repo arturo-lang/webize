@@ -1,5 +1,5 @@
 name: "shr"
-address: "0x10B690138"
+address: "0x109EA19A8"
 type: :function
 module: "Binary"
 returns: [

@@ -1,5 +1,5 @@
 name: "exit"
-address: "0x10B6E3318"
+address: "0x109EF5318"
 type: :function
 module: "System"
 returns: [
@@ -17,7 +17,7 @@ arguments: #[
     ]
 related: [
         "System/clear"
+         "System/null"
          "System/stack"
          "System/now"
-         "System/round"
     ]

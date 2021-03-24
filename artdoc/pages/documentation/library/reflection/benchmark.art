@@ -1,5 +1,5 @@
 name: "benchmark"
-address: "0x10B6D4408"
+address: "0x109EE74F8"
 type: :function
 module: "Reflection"
 returns: [
@@ -8,8 +8,8 @@ returns: [
 description: "benchmark given code"
 example: {
         benchmark [ 
-        ____; some process that takes some time
-        ____loop 1..10000 => prime? 
+            ; some process that takes some time
+            loop 1..10000 => prime? 
         ]
         
         ; [benchmark] time: 0.065s

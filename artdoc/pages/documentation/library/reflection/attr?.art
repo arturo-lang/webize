@@ -1,5 +1,5 @@
 name: "attr?"
-address: "0x10B6D4048"
+address: "0x109EE7138"
 type: :function
 module: "Reflection"
 returns: [
@@ -8,12 +8,12 @@ returns: [
 description: "check if given attribute exists"
 example: {
         greet: function [x][
-        ____if? not? attr? 'later [
-        ________print ["Hello" x "!"]
-        ____]
-        ____else [
-        ________print [x "I'm afraid I'll greet you later!"]
-        ____]
+            if? not? attr? 'later [
+                print ["Hello" x "!"]
+            ]
+            else [
+                print [x "I'm afraid I'll greet you later!"]
+            ]
         ]
         
         greet.later "John"

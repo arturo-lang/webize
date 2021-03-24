@@ -1,5 +1,5 @@
 name: "contains?"
-address: "0x10B6907C8"
+address: "0x109EA4138"
 type: :function
 module: "Collections"
 returns: [
@@ -16,8 +16,8 @@ example: {
         contains? arr 2             ; => true
         
         user: #[
-        ____name: "John"
-        ____surname: "Doe"
+            name: "John"
+            surname: "Doe"
         ]
         
         contains? dict "John"       ; => true

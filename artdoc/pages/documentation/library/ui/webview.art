@@ -1,5 +1,5 @@
 name: "webview"
-address: "0x10B6E36D8"
+address: "0x109EF8B88"
 type: :function
 module: "Ui"
 returns: [
@@ -9,18 +9,18 @@ returns: [
 description: "show webview window with given url or html source"
 example: {
         webview "Hello world!"
-        ; (opens a webview windows with "Hello world!")
-        
-        webview .width:  200 
-                .height: 300
-                .title:  "My webview app"
-        ---
-            <h1>This is my webpage</h1>
-            <p>
-                This is some content
-            </p>
-        ---
-        ; (opens a webview with given attributes)
+            ; (opens a webview windows with "Hello world!")
+            
+            webview .width:  200 
+                    .height: 300
+                    .title:  "My webview app"
+            ---
+                <h1>This is my webpage</h1>
+                <p>
+                    This is some content
+                </p>
+            ---
+            ; (opens a webview with given attributes)
     }
 attributes: #[
     title: #[

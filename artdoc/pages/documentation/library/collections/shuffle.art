@@ -1,5 +1,5 @@
 name: "shuffle"
-address: "0x10B6A1048"
+address: "0x109EAA8B8"
 type: :function
 module: "Collections"
 returns: [

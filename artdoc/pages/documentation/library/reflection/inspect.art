@@ -1,5 +1,5 @@
 name: "inspect"
-address: "0x10B6D4E58"
+address: "0x109EE8048"
 type: :function
 module: "Reflection"
 returns: [

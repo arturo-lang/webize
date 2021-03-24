@@ -1,5 +1,5 @@
 name: "zero?"
-address: "0x10B6CD7C8"
+address: "0x109EC1408"
 type: :function
 module: "Numbers"
 returns: [

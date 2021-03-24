@@ -1,5 +1,5 @@
 name: "cos"
-address: "0x10B6BD5E8"
+address: "0x109ED1048"
 type: :function
 module: "Numbers"
 returns: [

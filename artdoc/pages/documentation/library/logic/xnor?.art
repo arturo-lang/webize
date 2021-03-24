@@ -1,5 +1,5 @@
 name: "xnor?"
-address: "0x10B6B87C8"
+address: "0x109ECC228"
 type: :function
 module: "Logic"
 returns: [
@@ -24,9 +24,11 @@ attributes: #[
 arguments: #[
     valueA: [
             :boolean
+             :block
         ]
     valueB: [
             :boolean
+             :block
         ]
     ]
 related: [

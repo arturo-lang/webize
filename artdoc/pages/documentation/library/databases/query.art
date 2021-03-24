@@ -1,5 +1,5 @@
 name: "query"
-address: "0x10B6AAE58"
+address: "0x109EB18B8"
 type: :function
 module: "Databases"
 returns: [
@@ -15,6 +15,12 @@ attributes: #[
                 :boolean
             ]
         description: "return last INSERT id"
+        ]
+    with: #[
+        types: [
+                :block
+            ]
+        description: "use arguments for parametrized statement"
         ]
     ]
 arguments: #[

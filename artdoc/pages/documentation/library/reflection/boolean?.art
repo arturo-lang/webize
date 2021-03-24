@@ -1,5 +1,5 @@
 name: "boolean?"
-address: "0x10B6D46D8"
+address: "0x109EE77C8"
 type: :function
 module: "Reflection"
 returns: [

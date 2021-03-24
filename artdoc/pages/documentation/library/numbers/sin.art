@@ -1,5 +1,5 @@
 name: "sin"
-address: "0x10B6CD228"
+address: "0x109ED8D68"
 type: :function
 module: "Numbers"
 returns: [

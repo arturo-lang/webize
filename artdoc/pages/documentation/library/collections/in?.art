@@ -1,5 +1,5 @@
 name: "in?"
-address: "0x10B696138"
+address: "0x109EA49A8"
 type: :function
 module: "Collections"
 returns: [
@@ -16,8 +16,8 @@ example: {
         in? 2 arr             ; => true
         
         user: #[
-        ____name: "John"
-        ____surname: "Doe"
+            name: "John"
+            surname: "Doe"
         ]
         
         in? "John" dict       ; => true

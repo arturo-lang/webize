@@ -1,5 +1,5 @@
 name: "attr"
-address: "0x10B6CDE58"
+address: "0x109EE7048"
 type: :function
 module: "Reflection"
 returns: [
@@ -9,12 +9,12 @@ returns: [
 description: "get given attribute, if it exists"
 example: {
         multiply: function [x][
-        ____if? attr? "with" [ 
-        ________x * attr "with"
-        ____] 
-        ____else [ 
-        ________2*x 
-        ____]
+            if? attr? "with" [ 
+                x * attr "with"
+            ] 
+            else [ 
+                2*x 
+            ]
         ]
         
         print multiply 5

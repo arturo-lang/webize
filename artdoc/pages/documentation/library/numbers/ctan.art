@@ -1,5 +1,5 @@
 name: "ctan"
-address: "0x10B6BD9A8"
+address: "0x109ED1408"
 type: :function
 module: "Numbers"
 returns: [

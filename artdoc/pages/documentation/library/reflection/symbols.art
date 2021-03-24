@@ -1,5 +1,5 @@
 name: "symbols"
-address: "0x10B6D5D68"
+address: "0x109EE8E58"
 type: :function
 module: "Reflection"
 returns: [
@@ -13,8 +13,8 @@ example: {
         print symbols
         
         ; [
-        ;____a: 2
-        ;____b: "hello"
+        ;    a: 2
+        ;    b: "hello"
         ;_]
     }
 attributes: #[

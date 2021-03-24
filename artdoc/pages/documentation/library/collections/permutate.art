@@ -1,5 +1,5 @@
 name: "permutate"
-address: "0x10B6968B8"
+address: "0x109EAA228"
 type: :function
 module: "Collections"
 returns: [

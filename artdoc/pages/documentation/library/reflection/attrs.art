@@ -1,5 +1,5 @@
 name: "attrs"
-address: "0x10B6D4318"
+address: "0x109EE7408"
 type: :function
 module: "Reflection"
 returns: [
@@ -8,15 +8,15 @@ returns: [
 description: "get dictionary of set attributes"
 example: {
         greet: function [x][
-        ____print ["Hello" x "!"]
-        ____print attrs
+            print ["Hello" x "!"]
+            print attrs
         ]
         
         greet.later "John"
         
         ; Hello John!
         ; [
-        ;____later:    true
+        ;    later:    true
         ; ]
     }
 attributes: #[

@@ -1,5 +1,5 @@
 name: "prime?"
-address: "0x10B6C39A8"
+address: "0x109ED85E8"
 type: :function
 module: "Numbers"
 returns: [

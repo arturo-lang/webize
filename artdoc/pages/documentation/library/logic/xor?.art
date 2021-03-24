@@ -1,5 +1,5 @@
 name: "xor?"
-address: "0x10B6B88B8"
+address: "0x109ECC318"
 type: :function
 module: "Logic"
 returns: [
@@ -24,9 +24,11 @@ attributes: #[
 arguments: #[
     valueA: [
             :boolean
+             :block
         ]
     valueB: [
             :boolean
+             :block
         ]
     ]
 related: [

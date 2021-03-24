@@ -1,5 +1,5 @@
 name: "numeric?"
-address: "0x10B6DF138"
+address: "0x109EF2228"
 type: :function
 module: "Strings"
 returns: [

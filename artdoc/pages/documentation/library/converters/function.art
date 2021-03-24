@@ -1,5 +1,5 @@
 name: "function"
-address: "0x10B6A7C78"
+address: "0x109EB95E8"
 type: :function
 module: "Converters"
 returns: [
@@ -62,6 +62,6 @@ arguments: #[
 related: [
         "Converters/call"
          "Converters/odd?"
+         "Converters/arg"
          "Converters/define"
-         "Converters/write"
     ]

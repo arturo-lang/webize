@@ -1,5 +1,5 @@
 name: "truncate"
-address: "0x10B6DFB88"
+address: "0x109EF2C78"
 type: :function
 module: "Strings"
 returns: [
@@ -48,6 +48,6 @@ arguments: #[
 related: [
         "Strings/delete"
          "Strings/sin"
-         "Strings/union"
          "Strings/list"
+         "Strings/union"
     ]

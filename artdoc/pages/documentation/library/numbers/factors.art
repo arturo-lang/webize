@@ -1,5 +1,5 @@
 name: "factors"
-address: "0x10B6BDE58"
+address: "0x109ED18B8"
 type: :function
 module: "Numbers"
 returns: [

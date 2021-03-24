@@ -1,5 +1,5 @@
 name: "permissions"
-address: "0x10B6A07C8"
+address: "0x109EC5228"
 type: :function
 module: "Files"
 returns: [
@@ -7,7 +7,29 @@ returns: [
          :dictionary
     ]
 description: "check permissions of given file"
-example: ""
+example: {
+        inspect permissions "bin/arturo"
+        ; [ :dictionary
+        ;     user    :    [ :dictionary
+        ;         read     :        true :boolean
+        ;         write    :        true :boolean
+        ;         execute  :        true :boolean
+        ;     ]
+        ;     group   :    [ :dictionary
+        ;         read     :        true :boolean
+        ;         write    :        false :boolean
+        ;         execute  :        true :boolean
+        ;     ]
+        ;     others  :    [ :dictionary
+        ;         read     :        true :boolean
+        ;         write    :        false :boolean
+        ;         execute  :        true :boolean
+        ;     ]
+        ; ]
+        
+        permissions.set:#[others:#[write:true]] "bin/arturo"
+        ; gave write permission to 'others'
+    }
 attributes: #[
     set: #[
         types: [

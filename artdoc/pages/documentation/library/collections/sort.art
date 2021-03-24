@@ -1,5 +1,5 @@
 name: "sort"
-address: "0x10B6A1318"
+address: "0x109EAAB88"
 type: :function
 module: "Collections"
 returns: [
@@ -60,6 +60,6 @@ arguments: #[
 related: [
         "Collections/unique"
          "Collections/as"
-         "Collections/prints"
          "Collections/ensure"
+         "Collections/prints"
     ]

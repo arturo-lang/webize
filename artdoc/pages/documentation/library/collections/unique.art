@@ -1,5 +1,5 @@
 name: "unique"
-address: "0x10B6A16D8"
+address: "0x109EB6048"
 type: :function
 module: "Collections"
 returns: [
@@ -27,5 +27,5 @@ related: [
         "Collections/shuffle"
          "Collections/sort"
          "Collections/terminal"
-         "Collections/attr"
+         "Collections/list"
     ]
