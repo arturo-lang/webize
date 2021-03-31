@@ -11,7 +11,7 @@
 ;==========================================
 
 Webize: #[
-    version: "0.1"
+    version: "0.2"
 ] 
 
 ;--------------------------
@@ -22,6 +22,7 @@ Paths: #[
     root:				path\current
     build:  			"|project|/build"
     pages:				"|project|/pages"
+    theme:              "|project|/theme"
     resourceFonts:  	"|project|/theme/resources/fonts"
     resourceImages: 	"|project|/theme/resources/images"
     resourceScripts:	"|project|/theme/resources/scripts"
@@ -95,17 +96,43 @@ linkTo: function [location][
     parts: location 
     if block? parts -> parts: join.path parts
     parts: split.path parts
-
-    while [
-        and? [i < size pagePath]
-             [i < size parts]
-    ][
-        if (pagePath \ i) <> (parts \ i) [ break]
+    adjust: 0
+    if "_index" = last pagePath -> adjust: 1
+    while [and? [i < size pagePath]
+                [i < size parts]]
+    [
+        if (pagePath \ i) <> (parts \ i) -> break
         i: i + 1
     ]
-    ret: join.path (repeat [".."] dec (size pagePath)-i) ++ join.path slice parts i (size parts)-1
-    if? ret="" -> "."
-    else -> ret
+    ret: ""
+    if? pagePath=parts [
+        ret: "#"
+        ret
+    ]
+    else [
+        ret: join.path (repeat [".."] ((size pagePath)-i)-adjust) ++ join.path slice parts i (size parts)-1
+        ret: replace encode.url replace ret "?" "-" "+" "-" 
+        if? ret="" -> "."
+        else -> ret
+    ]
+]
+
+importPartial: function [pa][
+    project: path\current
+    read join.path @[~ Paths\theme pa]
+]
+
+getCanonical: function [root][
+    parts: ("_index"=last pagePath) ? -> chop pagePath -> pagePath
+    parts: map parts 'p -> replace encode.url replace p "?" "-" "+" "-" 
+    final: root ++ (lower join.path parts) ++ "/"
+
+    final: replace final "https://" "<HTTPS>"
+    replace replace final "//" "/" "<HTTPS>" "https://"
+]
+
+permalink: function [tag][
+    replace lower tag " " "-"
 ]
 
 ;--------------------------
@@ -126,7 +153,7 @@ linkTo: function [location][
     write ~"|project|/config.art" ""
 ]
 
-{_buildProject}: function [][
+{_buildProject}: function [loc][
     if? exists? "config.art" [
         Config: #"config.art" 
 
@@ -136,38 +163,73 @@ linkTo: function [location][
         call {_showHeader} ["rendering"]
 
         pages: select list.recursive "pages" => [ suffix? & ".art"]
+        pageTree: #.data[]
+
+        loop pages 'pg [
+            current: pageTree
+            p: pg -- "pages/"
+            parts: (split.path p) -- "_index.art"
+            loop parts 'part [
+                pp: part
+                if contains? pp ".art" ->
+                    pp: pp -- ".art"
+
+                if not? key? current pp [
+                    set current pp #.data []
+                ]
+                current: get current pp
+            ]
+        ]
+        ; inspect pageTree
+
         count: size pages
         loop.with: 'c pages 'page [
             sourcePath: page --"pages/"
             targetRoute: sourcePath -- extract.extension page
-            targetPath: append join.path @[Target targetRoute] ".html"
+            targetPath: ""
+            if? "_index" = extract.filename page ->
+                targetPath: replace append join.path @[loc targetRoute] ".html" "_" ""
+            else ->
+                targetPath: append join.path @[loc targetRoute "index"] ".html"
+
+            targetPath: lower replace replace targetPath "?" "-" " " "-"
             targetDir: extract.directory targetPath
             targetFile: extract.filename targetPath
+            
             write.directory targetDir ø
 
             call {_showInfoLine} @[~"[|c+1|/|count|]" join.with:" ▪︎ " split.path (sourcePath -- extract.extension sourcePath) false]
 
-            keepSearching: true
             templatePath: ""
             loop ThemeSettings\routes [route,template][
-                if keepSearching [
-                    if not? empty? match sourcePath route [
-                        templatePath: join.path @[Theme template]
-                        keepSearching: false
-                    ]
+                if not? empty? match sourcePath route [
+                    ; print ["matched:" route "for:" sourcePath]
+                    templatePath: join.path @[Theme template]
+                    break
                 ]
             ]
 
             do [
                 pagePath: split.path targetRoute
+                ;; debug
+                ; print [ "\n"
+                ;     "sourcePath:" sourcePath "\n"
+                ;     "targetRoute:" targetRoute "\n"
+                ;     "targetPath:" targetPath "\n"
+                ;     "targetDir:" targetDir "\n"
+                ;     "targetFile:" targetFile "\n"
+                ;     "pagePath:" pagePath "\n"
+                ;     "template:" templatePath "\n"
+                ; ]
                 W: #.data page
                 rendered: new render.template read templatePath
                 if key? ThemeSettings 'postprocess [
                     loop ThemeSettings\postprocess [k,v] [
-                        replace 'rendered k v
+                        replace 'rendered .regex k v
                     ]
                 ]
                 write targetPath rendered
+                execute ~"html-minifier --collapse-whitespace --remove-comments |targetPath| -o |targetPath|"
             ]
             
         ]
@@ -179,16 +241,30 @@ linkTo: function [location][
         call {_showHeader} ["finalizing"]
 
         loop filter list "theme/resources" => [in? "."] 'res [ 
-            call {_showInfoLine} @["create" join.path @[Target "resources" extract.basename res] false]
-            write.directory join.path @[Target "resources" extract.basename res] ø
+            call {_showInfoLine} @["create" join.path @[loc "resources" extract.basename res] false]
+            write.directory join.path @[loc "resources" extract.basename res] ø
             loop list res 'item [
-                tgt: join.path @[Target item -- "theme/"]
+                tgt: join.path @[loc item -- "theme/"]
                 
                 case [in? extract.extension item]
                     when? [[".scss" ".sass"]] [
                         call {_showInfoLine} @["process" tgt false]
                         newTgt: replace tgt extract.extension tgt ".css"
-                        execute ~"scss |item| |newTgt|"
+                        execute ~"scss --style compressed |item| |newTgt|"
+                    ]
+                    when? [[".png"]][
+                        call {_showInfoLine} @["compress" tgt false]
+                        newTgt: replace tgt extract.extension tgt ".webp"
+                        execute ~"cwebp |item| -o |newTgt|"
+
+                        call {_showInfoLine} @["copy" tgt false]
+                        execute ~"cp |item| |extract.directory tgt|"
+                    ]
+                    when? [[".js"]][
+                        call {_showInfoLine} @["copy" tgt false]
+                        execute ~"cp |item| |extract.directory tgt|"
+
+                        execute ~"uglifyjs --compress -o |tgt| -- |tgt|"
                     ]
                     else [
                         call {_showInfoLine} @["copy" tgt false]
@@ -219,10 +295,17 @@ if standalone? [
     initialize
 
     if empty? arg [ call {_showHelp} [], exit ]
-    
-    case [arg\0=]
-        when? -> "new"   -> call {_newProject} @[arg\1]
-        when? -> "build" -> call {_buildProject} []
+    case [key? args]
+        when? -> "new" [
+            call {_newProject} @[args\new]
+        ]
+        when? -> "build" [
+            location: join.path @[path\current Target]
+            if key? args 'at [ 
+                location: join.path @[path\current to :string args\at ] 
+            ]
+            call {_buildProject} @[location]
+        ]
         else  -> print "command not recognized"
 ]
 
