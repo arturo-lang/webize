@@ -43,31 +43,31 @@ InfoPadding: 13
 
 {_showLogo}: function [][
     print join @ to :block {
-        color.green"        _  _" color.white.bold" __        __   _     _         "  "\n"
-        color.green"      _| || |_" color.white.bold" \      / /__| |__ (_)_______ "  "\n"
-        color.green"     |_  -|  _|" color.white.bold" \ /\ / / _ \ '_ \| |_  / _ \"  "\n"
-        color.green"     |_  |-  _|" color.white.bold"\ V  V /  __/ |_/ | |/ /  __/"  "\n"
-        color.green"       |_||_|" color.white.bold"   \_/\_/ \___|_.__/|_/___\___|"
+        color #green"        _  _" color #white.bold" __        __   _     _         "  "\n"
+        color #green"      _| || |_" color #white.bold" \      / /__| |__ (_)_______ "  "\n"
+        color #green"     |_  -|  _|" color #white.bold" \ /\ / / _ \ '_ \| |_  / _ \"  "\n"
+        color #green"     |_  |-  _|" color #white.bold"\ V  V /  __/ |_/ | |/ /  __/"  "\n"
+        color #green"       |_||_|" color #white.bold"   \_/\_/ \___|_.__/|_/___\___|"
     }
 ]
 
 {_showHeader}: function [message][
     print ""
-    print color.magenta "==========================================================================="
-    print [pad "" InfoPadding color.magenta upper message]
-    print color.magenta "==========================================================================="
+    print color #magenta "==========================================================================="
+    print [pad "" InfoPadding color #magenta upper message]
+    print color #magenta "==========================================================================="
 ]
 
 {_showInfo}: function [msg,inf][
     if? attr "section" ->
-        print [color.green ("* " ++ msg) inf]
+        print [color #green ("* " ++ msg) inf]
     else ->
-        print [color.cyan ("   - " ++ msg) inf]
+        print [color #cyan ("   - " ++ msg) inf]
 ]
 
 {_showInfoLine}: function [head,tail,success][
-    if? success -> print [color.green pad head InfoPadding tail]
-    else -> print [color.cyan pad head InfoPadding tail]
+    if? success -> print [color #green pad head InfoPadding tail]
+    else -> print [color #cyan pad head InfoPadding tail]
 ]
 
 {_showHelp}: function [][
@@ -110,7 +110,7 @@ linkTo: function [location][
     while [and? [i < size pagePath]
                 [i < size parts]]
     [
-        if (pagePath \ i) <> (parts \ i) -> break
+        if pagePath\[i] <> parts\[i] -> break
         i: i + 1
     ]
     ret: ""
