@@ -168,7 +168,8 @@ permalink: function [tag][
 
         Data: #.data[]
         loop list "data" 'f [
-            set Data (extract.basename f) -- extract.extension f do read f
+            if ".art" = extract.extension f ->
+                set Data (extract.basename f) -- extract.extension f do read f
         ]
         ;inspect Data
 
@@ -240,7 +241,7 @@ permalink: function [tag][
                 rendered: new render.template read templatePath
                 if key? ThemeSettings 'postprocess [
                     loop ThemeSettings\postprocess [k,v] [
-                        replace 'rendered .regex k v
+                        replace 'rendered to :regex k v
                     ]
                 ]
                 write targetPath rendered
