@@ -256,7 +256,7 @@ permalink: function [tag][
         ;-------------------------
         call {_showHeader} ["finalizing"]
 
-        loop filter list "theme/resources" => [in? "."] 'res [ 
+        loop filter list "theme/resources" => [in? "." &] 'res [ 
             folderPath: join.path @[loc "resources" extract.basename res]
             call {_showInfoLine} @["create" call {_routeDiagram} @[res -- "theme/resources/"] false]
             write.directory join.path @[loc "resources" extract.basename res] ø
@@ -267,7 +267,7 @@ permalink: function [tag][
                     when? [[".scss" ".sass"]] [
                         call {_showInfoLine} @["process" call {_routeDiagram} @[item -- "theme/resources/"] false]
                         newTgt: replace tgt extract.extension tgt ".css"
-                        execute ~"scss --style compressed |item| |newTgt|"
+                        execute ~"sass --style compressed |item| |newTgt|"
                     ]
                     when? [[".png"]][
                         call {_showInfoLine} @["compress" call {_routeDiagram} @[item -- "theme/resources/"] false]
